@@ -44,6 +44,10 @@ publishing {
         maven {
             name = "hypera"
             url = uri("https://repo.hypera.dev/snapshots/")
+            credentials {
+                username = System.getenv("HYPERA_USERNAME")
+                password = System.getenv("HYPERA_PASSWORD")
+            }
         }
     }
 }
