@@ -4,9 +4,9 @@
 ```kts
 repositories {
     mavenCentral()
-    maven("https://oss.sonatype.org/content/repositories/snapshots/")
-    maven("https://jitpack.io/")
-    maven("https://repo.hypera.dev/snapshots/")
+    maven("https://oss.sonatype.org/content/repositories/snapshots/") // spark
+    maven("https://jitpack.io/") // minestom-ce
+    maven("https://repo.hypera.dev/snapshots/") // spark-minestom
 }
 
 dependencies {
@@ -16,9 +16,9 @@ dependencies {
 
 ## Usage
 ```java
-# Enable Spark
+// Enable Spark
 Spark.enable(Path);
 
-# Disable Spark
+// Disable Spark
 Spark.disable();
 ```
