@@ -29,6 +29,7 @@ dependencies {
 
     testImplementation("com.github.hollow-cube:minestom-ce:5ba3d92d83")
     testImplementation("org.slf4j:slf4j-simple:2.0.7")
+    testImplementation("net.java.dev.jna:jna:5.13.0")
 }
 
 blossom {

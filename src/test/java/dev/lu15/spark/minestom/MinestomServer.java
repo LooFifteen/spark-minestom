@@ -1,5 +1,6 @@
 package dev.lu15.spark.minestom;
 
+import dev.lu15.spark.minestom.winmm.TimerManager;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileVisitor;
@@ -18,11 +19,21 @@ import net.minestom.server.permission.Permission;
 
 final class MinestomServer {
 
+    private static final int TIMER_RESOLUTION = 10;
+
     private MinestomServer() {
 
     }
 
     public static void main(String[] args) throws IOException {
+        // Set up timing fix
+        TimerManager timerManager;
+        if (System.getProperty("os.name").toLowerCase().startsWith("win")) {
+            timerManager = new TimerManager();
+            timerManager.addTimerResolution(TIMER_RESOLUTION);
+        } else timerManager = null;
+
+        // Set up Minestom
         MinecraftServer server = MinecraftServer.init();
 
         MojangAuth.init();
@@ -53,6 +64,9 @@ final class MinestomServer {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
+            // Disable timing fix
+            if (timerManager != null) timerManager.removeTimerResolution(TIMER_RESOLUTION);
         });
 
         server.start("0.0.0.0", 25565);
